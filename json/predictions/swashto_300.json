@@ -1,0 +1,62 @@
+[
+    {
+        "model": "api.Prediction",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "fight": 1,
+            "winner": 1,
+            "method": "KO",
+            "round": 1,
+            "date": "2025-09-04"
+        }
+    },
+    {
+        "model": "api.Prediction",
+        "pk": 3,
+        "fields": {
+            "user": 1,
+            "fight": 3,
+            "winner": 6,
+            "method": "KO",
+            "round": 4,
+            "date": "2025-09-04"
+        }
+    },
+    {
+        "model": "api.Prediction",
+        "pk": 2,
+        "fields": {
+            "user": 1,
+            "fight": 2,
+            "winner": 3,
+            "method": "TKO",
+            "round": 3,
+            "date": "2025-09-04"
+        }
+    },
+    {
+        "model": "api.Prediction",
+        "pk": 4,
+        "fields": {
+            "user": 1,
+            "fight": 4,
+            "winner": 7,
+            "method": "DEC-SPLIT",
+            "round": 3,
+            "date": "2025-09-04"
+        }
+    },
+    {
+        "model": "api.Prediction",
+        "pk": 5,
+        "fields": {
+            "user": 1,
+            "fight": 5,
+            "winner": 9,
+            "method": "KO",
+            "round": 2,
+            "date": "2025-09-04"
+        }
+    }
+]

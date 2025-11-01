@@ -1,0 +1,36 @@
+[
+    {
+        "model": "api.User",
+        "pk": 1,
+        "fields": {
+            "username": "swashto",
+            "email": "swashto@gmail.com",
+            "password": "swashtopass"
+        }
+    },
+    {
+        "model": "api.User",
+        "fields": {
+            "username": "craig",
+            "email": "craig@gmail.com",
+            "password": "craigpass"
+        }
+    },
+    {
+        "model": "api.User",
+        "fields": {
+            "username": "john",
+            "email": "john@gmail.com",
+            "password": "johnpass"
+        }
+    },
+    {
+        "model": "api.User",
+        "pk": 4,
+        "fields": {
+            "username": "mary",
+            "email": "mary@gmail.com",
+            "password": "marypass"
+        }
+    }
+]

@@ -1,0 +1,211 @@
+[
+    {
+        "model": "api.Fight",
+        "pk": 1,
+        "fields": {
+            "event" : 1,
+            "fighter_red" : 2,
+            "fighter_blue" : 1,
+            "weight_class" : "LHW",
+            "scheduled_rounds" : 5,
+            "title_fight" : true,
+
+            "winner" : 1,
+            "method" : "KO",
+            "round" : 1
+        }
+    },
+    {
+        "model": "api.Fight",
+        "pk": 2,
+        "fields": {
+            "event" : 1,
+            "fighter_red" : 3,
+            "fighter_blue" : 4,
+            "weight_class" : "SW",
+            "scheduled_rounds" : 5,
+            "title_fight" : true,
+
+            "winner" : 3,
+            "method" : "DEC",
+            "round" : 3
+        }
+    },
+    {
+        "model": "api.Fight",
+        "pk": 3,
+        "fields": {
+            "event" : 1,
+            "fighter_red" : 6,
+            "fighter_blue" : 5,
+            "weight_class" : "LW",
+            "scheduled_rounds" : 5,
+            "title_fight" : true,
+
+            "winner" : 6,
+            "method" : "KO",
+            "round" : 5
+        }
+    },
+    {
+        "model": "api.Fight",
+        "pk": 4,
+        "fields": {
+            "event" : 1,
+            "fighter_red" : 7,
+            "fighter_blue" : 8,
+            "weight_class" : "LW",
+            "scheduled_rounds" : 3,
+            "title_fight" : false,
+
+            "winner" : 8,
+            "method" : "DEC-SPLIT",
+            "round" : 3
+        }
+    },
+    {
+        "model": "api.Fight",
+        "pk": 5,
+        "fields": {
+            "event" : 1,
+            "fighter_red" : 9,
+            "fighter_blue" : 10,
+            "weight_class" : "MW",
+            "scheduled_rounds" : 3,
+            "title_fight" : false,
+
+            "winner" : 9,
+            "method" : "SUB",
+            "round" : 2
+        }
+    },
+    {
+        "model": "api.Fight",
+        "pk": 6,
+        "fields": {
+            "event" : 1,
+            "fighter_red" : 11,
+            "fighter_blue" : 12,
+            "weight_class" : "LHW",
+            "scheduled_rounds" : 3,
+            "title_fight" : false,
+
+            "winner" : 11,
+            "method" : "TKO",
+            "round" : 2
+        }
+    },
+    {
+        "model": "api.Fight",
+        "pk": 7,
+        "fields": {
+            "event" : 1,
+            "fighter_red" : 14,
+            "fighter_blue" : 13,
+            "weight_class" : "FW",
+            "scheduled_rounds" : 3, 
+            "title_fight" : false,
+
+            "winner" : 14,
+            "method" : "DEC",
+            "round" : 3
+        }
+    },
+    {
+        "model": "api.Fight",
+        "pk": 8,
+        "fields": {
+            "event" : 1,
+            "fighter_red" : 16,
+            "fighter_blue" : 15,
+            "weight_class" : "BW",
+            "scheduled_rounds" : 3, 
+            "title_fight" : false,
+
+            "winner" : 1,
+            "method" : "SUB",
+            "round" : 2
+        }
+    },
+    {
+        "model": "api.Fight",
+        "pk": 9,
+        "fields": {
+            "event" : 1,
+            "fighter_red" : 18,
+            "fighter_blue" : 17,
+            "weight_class" : "FW",
+            "scheduled_rounds" : 3, 
+            "title_fight" : false,
+
+            "winner" : 18,
+            "method" : "TKO",
+            "round" : 1
+        }
+    },
+    {
+        "model": "api.Fight",
+        "pk": 10,
+        "fields": {
+            "event" : 1,
+            "fighter_red" : 19,
+            "fighter_blue" : 20,
+            "weight_class" : "LW",
+            "scheduled_rounds" : 3,
+            "title_fight" : false,
+
+            "winner" : 19,
+            "method" : "TKO",
+            "round" : 2
+        }
+    },
+    {
+        "model": "api.Fight",
+        "pk": 11,
+        "fields": {
+            "event" : 1,
+            "fighter_red" : 21,
+            "fighter_blue" : 22,
+            "weight_class" : "SW",
+            "scheduled_rounds" : 3, 
+            "title_fight" : false,
+
+            "winner" : 21,
+            "method" : "DEC",
+            "round" : 3
+        }
+    },
+    {
+        "model": "api.Fight",
+        "pk": 12,
+        "fields": {
+            "event" : 1,
+            "fighter_red" : 23,
+            "fighter_blue" : 24,
+            "weight_class" : "LW",
+            "scheduled_rounds" : 3, 
+            "title_fight" : false,
+
+            "winner" : 23,
+            "method" : "DEC",
+            "round" : 3
+        }
+    },
+    {
+        "model": "api.Fight",
+        "pk": 13,
+        "fields": {
+            "event" : 1,
+            "fighter_red" : 25,
+            "fighter_blue" : 26,
+            "weight_class" : "BW",
+            "scheduled_rounds" : 3, 
+            "title_fight" : false,
+
+            "winner" : 25,
+            "method" : "SUB",
+            "round" : 2
+        }
+    }
+
+]

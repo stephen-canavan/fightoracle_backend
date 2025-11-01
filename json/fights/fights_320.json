@@ -1,0 +1,99 @@
+[
+    {
+        "model": "api.Fight",
+        "pk": 14,
+        "fields": {
+            "event" : 1,
+            "fighter_red" : 2,
+            "fighter_blue" : 1,
+            "weight_class" : "LHW",
+            "scheduled_rounds" : 5,
+            "title_fight" : true,
+
+            "winner" : 1,
+            "method" : "KO",
+            "round" : 1
+        }
+    },
+    {
+        "model": "api.Fight",
+        "pk": 15,
+        "fields": {
+            "event" : 2,
+            "fighter_red" : 3,
+            "fighter_blue" : 4,
+            "weight_class" : "SW",
+            "scheduled_rounds" : 5,
+            "title_fight" : true,
+
+            "winner" : 3,
+            "method" : "DEC",
+            "round" : 3
+        }
+    },
+    {
+        "model": "api.Fight",
+        "pk": 16,
+        "fields": {
+            "event" : 2,
+            "fighter_red" : 6,
+            "fighter_blue" : 5,
+            "weight_class" : "LW",
+            "scheduled_rounds" : 5,
+            "title_fight" : true,
+
+            "winner" : 6,
+            "method" : "KO",
+            "round" : 5
+        }
+    },
+    {
+        "model": "api.Fight",
+        "pk": 17,
+        "fields": {
+            "event" : 2,
+            "fighter_red" : 7,
+            "fighter_blue" : 8,
+            "weight_class" : "LW",
+            "scheduled_rounds" : 3,
+            "title_fight" : false,
+
+            "winner" : 7,
+            "method" : "DEC",
+            "round" : 3
+        }
+    },
+    {
+        "model": "api.Fight",
+        "pk": 18,
+        "fields": {
+            "event" : 2,
+            "fighter_red" : 9,
+            "fighter_blue" : 10,
+            "weight_class" : "MW",
+            "scheduled_rounds" : 3,
+            "title_fight" : false,
+
+            "winner" : 9,
+            "method" : "SUB",
+            "round" : 2
+        }
+    },
+    {
+        "model": "api.Fight",
+        "pk": 19,
+        "fields": {
+            "event" : 2,
+            "fighter_red" : 11,
+            "fighter_blue" : 12,
+            "weight_class" : "LHW",
+            "scheduled_rounds" : 3,
+            "title_fight" : false,
+
+            "winner" : 11,
+            "method" : "TKO",
+            "round" : 2
+        }
+    }
+
+]

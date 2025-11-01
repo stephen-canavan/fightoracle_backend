@@ -1,0 +1,34 @@
+[
+    {
+        "model": "api.Promotion",
+        "pk": 1,
+        "fields": {
+            "name": "Ultimate Fighting Championship",
+            "country": "United States"
+        }
+    },
+    {
+        "model": "api.Promotion",
+        "pk": 2,
+        "fields": {
+            "name": "Professional Fighters League",
+            "country": "United States"
+        }
+    },
+    {
+        "model": "api.Promotion",
+        "pk": 3,
+        "fields": {
+            "name": "Bellator MMA",
+            "country": "United States"
+        }
+    },
+    {
+        "model": "api.Promotion",
+        "pk": 4,
+        "fields": {
+            "name": "ONE Championship",
+            "country": "United States"
+        }
+    }
+]

@@ -1,0 +1,53 @@
+from django.shortcuts import get_object_or_404
+from rest_framework import status
+from rest_framework import viewsets
+from rest_framework.response import Response
+from api.models import Fight
+from api.serializers import FightSerializer
+from django.db.models import Q
+from rest_framework.permissions import AllowAny
+
+
+class FightViewSet(viewsets.ViewSet):
+    permission_classes = [AllowAny]
+
+    def get_serializer_class(self):
+        return FightSerializer
+
+    def get_queryset(self):
+        fighter_id = self.kwargs.get("fighter_pk")
+        event_id = self.kwargs.get("event_pk")
+        query_set = Fight.objects.all()
+
+        if event_id:
+            query_set = query_set.filter(event=event_id)
+        if fighter_id:
+            query_set = query_set.filter(
+                Q(fighter_red__id=fighter_id) | Q(fighter_blue__id=fighter_id)
+            )
+
+        return query_set
+
+    def list(self, request, **kwargs):
+        fights = self.get_queryset()
+        serializer = FightSerializer(fights, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        fight = get_object_or_404(Fight, id=pk)
+        serializer = FightSerializer(fight)
+        return Response(serializer.data)
+
+    def destroy(self, request, pk=None):
+        fight = get_object_or_404(Fight, id=pk)
+        fight.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def partial_update(self, request, pk=None):
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    def update(self, request, pk=None):
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    def create(self, pk=None):
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)

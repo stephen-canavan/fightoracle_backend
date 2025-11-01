@@ -1,0 +1,467 @@
+[
+    {
+        "model": "api.Fighter",
+        "pk": 1,
+        "fields": {
+            "fname": "Alex",
+            "sname": "Pereira",
+            "nickname": "Poatan",
+            "promotion": 1,
+            "weight_class": "Light Heavyweight",
+            "dob": "1987-07-07",
+            "wins": 12,
+            "losses": 3,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }       
+    },
+    {
+        "model": "api.Fighter",
+        "pk": 2,
+        "fields": {
+            "fname": "Jamahal",
+            "sname": "Hill",
+            "nickname": "Sweet Dreams",
+            "promotion": 1,
+            "weight_class": "Light Heavyweight",
+            "dob": "1991-05-19",
+            "wins": 12,
+            "losses": 4,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    },
+    {
+        "model": "api.Fighter",
+        "pk": 3,
+        "fields": {
+            "fname": "Zhang",
+            "sname": "Weili",
+            "nickname": "Magnum",
+            "promotion": 1,
+            "weight_class": "Strawweight",
+            "dob": "1989-08-13",
+            "wins": 25,
+            "losses": 3,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 4,
+        "fields": {
+            "fname": "Yan",
+            "sname": "Xiaonan",
+            "nickname": "Nine",
+            "promotion": 1,
+            "weight_class": "Strawweight",
+            "dob": "1989-12-16",
+            "wins": 17,
+            "losses": 3,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 5,
+        "fields": {
+            "fname": "Justin",
+            "sname": "Gaethje",
+            "nickname": "The Highlight",
+            "promotion": 1,
+            "weight_class": "Lightweight",
+            "dob": "1988-11-14",
+            "wins": 26,
+            "losses": 4,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 6,
+        "fields": {
+            "fname": "Max",
+            "sname": "Holloway",
+            "nickname": "Blessed",
+            "promotion": 1,
+            "weight_class": "Featherweight",
+            "dob": "1991-12-04",
+            "wins": 27,
+            "losses": 8,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 7,
+        "fields": {
+            "fname": "Charles",
+            "sname": "Oliveira",
+            "nickname": "do Bronx",
+            "promotion": 1,
+            "weight_class": "Lightweight",
+            "dob": "1989-10-17",
+            "wins": 34,
+            "losses": 10,
+            "draws": 0,
+            "no_contests": 1,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 8,
+        "fields": {
+            "fname": "Arman",
+            "sname": "Tsarukyan",
+            "nickname": "Ahalkalakets",
+            "promotion": 1,
+            "weight_class": "Lightweight",
+            "dob": "1996-10-11",
+            "wins": 22,
+            "losses": 3,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 9,
+        "fields": {
+            "fname": "Bo",
+            "sname": "Nickal",
+            "nickname": null,
+            "promotion": 1,
+            "weight_class": "Middleweight",
+            "dob": "1996-01-14",
+            "wins": 6,
+            "losses": 1,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 10,
+        "fields": {
+            "fname": "Cody",
+            "sname": "Brundage",
+            "nickname": null,
+            "promotion": 1,
+            "weight_class": "Middleweight",
+            "dob": "1994-01-06",
+            "wins": 11,
+            "losses": 7,
+            "draws": 1,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 11,
+        "fields": {
+            "fname": "Jiří",
+            "sname": "Procházka",
+            "nickname": "BJP",
+            "promotion": 1,
+            "weight_class": "Light Heavyweight",
+            "dob": "1992-10-14",
+            "wins": 31,
+            "losses": 5,
+            "draws": 1,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 12,
+        "fields": {
+            "fname": "Aleksandar",
+            "sname": "Rakić",
+            "nickname": "Rocket",
+            "promotion": 1,
+            "weight_class": "Light Heavyweight",
+            "dob": "1992-02-06",
+            "wins": 14,
+            "losses": 6,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 13,
+        "fields": {
+            "fname": "Calvin",
+            "sname": "Kattar",
+            "nickname": "The Boston Finisher",
+            "promotion": 1,
+            "weight_class": "Featherweight",
+            "dob": "1988-03-26",
+            "wins": 23,
+            "losses": 11,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 14,
+        "fields": {
+            "fname": "Aljamain",
+            "sname": "Sterling",
+            "nickname": "Funk Master",
+            "promotion": 1,
+            "weight_class": "Bantamweight",
+            "dob": "1989-07-31",
+            "wins": 26,
+            "losses": 5,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 15,
+        "fields": {
+            "fname": "Holly",
+            "sname": "Holm",
+            "nickname": "The Preacher's Daughter",
+            "promotion": 1,
+            "weight_class": "Bantamweight",
+            "dob": "1981-10-17",
+            "wins": 15,
+            "losses": 8,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 16,
+        "fields": {
+            "fname": "Kayla",
+            "sname": "Harrison",
+            "nickname": null,
+            "promotion": 1,
+            "weight_class": "Bantamweight",
+            "dob": "1990-05-02",
+            "wins": 16,
+            "losses": 1,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 17,
+        "fields": {
+            "fname": "Sodiq",
+            "sname": "Yusuff",
+            "nickname": "Super",
+            "promotion": 1,
+            "weight_class": "Featherweight",
+            "dob": "1993-05-19",
+            "wins": 13,
+            "losses": 4,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+   ,
+    {
+        "model": "api.Fighter",
+        "pk": 18,
+        "fields": {
+            "fname": "Diego",
+            "sname": "Lopes",
+            "nickname": null,
+            "promotion": 1,
+            "weight_class": "Featherweight",
+            "dob": "1992-04-25",
+            "wins": 24,
+            "losses": 7,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 19,
+        "fields": {
+            "fname": "Jalin",
+            "sname": "Turner",
+            "nickname": "Tarantula",
+            "promotion": 1,
+            "weight_class": "Lightweight",
+            "dob": "1994-05-03",
+            "wins": 14,
+            "losses": 7,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 20,
+        "fields": {
+            "fname": "Renato",
+            "sname": "Carneiro",
+            "nickname": "Money Moicano",
+            "promotion": 1,
+            "weight_class": "Lightweight",
+            "dob": "1989-08-21",
+            "wins": 18,
+            "losses": 6,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 21,
+        "fields": {
+            "fname": "Jessica",
+            "sname": "Andrade",
+            "nickname": "Bate Estaca",
+            "promotion": 1,
+            "weight_class": "Strawweight",
+            "dob": "1991-09-25",
+            "wins": 26,
+            "losses": 13,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 22,
+        "fields": {
+            "fname": "Marina",
+            "sname": "Rodriguez",
+            "nickname": null,
+            "promotion": 1,
+            "weight_class": "Strawweight",
+            "dob": "1987-07-29",
+            "wins": 18,
+            "losses": 3,
+            "draws": 2,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 23,
+        "fields": {
+            "fname": "Bobby",
+            "sname": "Green",
+            "nickname": "King",
+            "promotion": 1,
+            "weight_class": "Lightweight",
+            "dob": "1986-11-09",
+            "wins": 31,
+            "losses": 17,
+            "draws": 1,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 24,
+        "fields": {
+            "fname": "Jim",
+            "sname": "Miller",
+            "nickname": "A-10",
+            "promotion": 1,
+            "weight_class": "Lightweight",
+            "dob": "1983-08-30",
+            "wins": 37,
+            "losses": 18,
+            "draws": 1,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 25,
+        "fields": {
+            "fname": "Deiveson",
+            "sname": "Figueiredo",
+            "nickname": "Deus da Guerra",
+            "promotion": 1,
+            "weight_class": "Flyweight",
+            "dob": "1987-12-18",
+            "wins": 23,
+            "losses": 4,
+            "draws": 1,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+    ,
+    {
+        "model": "api.Fighter",
+        "pk": 26,
+        "fields": {
+            "fname": "Cody",
+            "sname": "Garbrandt",
+            "nickname": "No Love",
+            "promotion": 1,
+            "weight_class": "Bantamweight",
+            "dob": "1991-07-07",
+            "wins": 14,
+            "losses": 7,
+            "draws": 0,
+            "no_contests": 0,
+            "dqs": 0
+        }
+    }
+]
