@@ -8,6 +8,7 @@ class User(AbstractUser):
     password = models.CharField(max_length=255, validators=[validate_password])
     email = models.EmailField(max_length=255, unique=True)
 
+    USERNAME_FIELD = "username"
     lookup_field = "username"
 
     def __str__(self):

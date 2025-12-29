@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os
+import re
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +23,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-7&ur4&xzk6f1(=vlyi)pd_eq(#=dp44zvvbz$c+(_-r@ol@qfv"
+SECRET_KEY = os.getenv(
+    "SECRET_KEY", "django-insecure-7&ur4&xzk6f1(=vlyi)pd_eq(#=dp44zvvbz$c+(_-r@ol@qfv"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "True").lower() == "true"
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = (
+    os.getenv("ALLOWED_HOSTS", "*").split(",") if os.getenv("ALLOWED_HOSTS") else ["*"]
+)
 
 AUTH_USER_MODEL = "api.User"
 
@@ -41,8 +47,16 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ACCESS_TOKEN_LIFETIME": timedelta(
+        minutes=int(os.getenv("JWT_ACCESS_TOKEN_LIFETIME_MINUTES", "15"))
+    ),
+    "REFRESH_TOKEN_LIFETIME": timedelta(
+        days=int(os.getenv("JWT_REFRESH_TOKEN_LIFETIME_DAYS", "7"))
+    ),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "AUTH_COOKIE": "access_token",
 }
 
 
@@ -73,6 +87,14 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
+
+# Allow additional CORS origins from environment variable
+if os.getenv("CORS_ALLOWED_ORIGINS"):
+    CORS_ALLOWED_ORIGINS.extend(os.getenv("CORS_ALLOWED_ORIGINS").split(","))
+
 ROOT_URLCONF = "fight_predictor.urls"
 
 TEMPLATES = [
@@ -96,12 +118,46 @@ WSGI_APPLICATION = "fight_predictor.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+# Use PostgreSQL if DATABASE_URL is set, otherwise fall back to SQLite for development
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if DATABASE_URL:
+    # Parse DATABASE_URL format: postgresql://user:password@host:port/dbname
+    match = re.match(
+        r"postgresql://(?P<user>[^:]+):(?P<password>[^@]+)@(?P<host>[^:]+):(?P<port>\d+)/(?P<name>.+)",
+        DATABASE_URL,
+    )
+    if match:
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.postgresql",
+                "NAME": match.group("name"),
+                "USER": match.group("user"),
+                "PASSWORD": match.group("password"),
+                "HOST": match.group("host"),
+                "PORT": match.group("port"),
+            }
+        }
+    else:
+        # Fallback: try individual environment variables
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.postgresql",
+                "NAME": os.getenv("DB_NAME", "fight_predictor"),
+                "USER": os.getenv("DB_USER", "postgres"),
+                "PASSWORD": os.getenv("DB_PASSWORD", ""),
+                "HOST": os.getenv("DB_HOST", "localhost"),
+                "PORT": os.getenv("DB_PORT", "5432"),
+            }
+        }
+else:
+    # Default to SQLite for development
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
 
 
 # Password validation
@@ -139,11 +195,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS Settings - Only allow all origins in development
+CORS_ALLOW_ALL_ORIGINS = DEBUG
 CORS_ALLOW_CREDENTIALS = True
+
+# Security settings for production
+if not DEBUG:
+    SECURE_SSL_REDIRECT = os.getenv("SECURE_SSL_REDIRECT", "True").lower() == "true"
+    SECURE_HSTS_SECONDS = int(os.getenv("SECURE_HSTS_SECONDS", "31536000"))
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True

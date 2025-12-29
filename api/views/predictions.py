@@ -5,12 +5,21 @@ from rest_framework.response import Response
 from api.models import Prediction, User
 from api.serializers import PredictionSerializer
 from api.filters.prediction import PredictionFilter
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
+from api.permissions import PredictionIsMakeable, IsOwner
 
 
 class PredictionViewSet(viewsets.ViewSet):
-    permission_classes = [AllowAny]
     filterset_class = PredictionFilter
+
+    def get_permissions(self):
+        if self.action in ["list", "retrieve"]:
+            return [AllowAny()]
+        if self.action == "create":
+            return [IsAuthenticated(), PredictionIsMakeable()]
+        if self.action in ["update", "partial_update"]:
+            return [IsAuthenticated(), IsOwner(), PredictionIsMakeable()]
+        return [IsAdminUser()]
 
     def get_queryset(self, **kwargs):
         query_set = Prediction.objects.all()

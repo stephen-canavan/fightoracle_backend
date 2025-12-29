@@ -4,11 +4,11 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from api.models import Fighter
 from api.serializers import FighterSerializer
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import IsAdminUser, AllowAny
 
 
 class FighterViewSet(viewsets.ViewSet):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAdminUser]
 
     def get_queryset(self):
         event_id = self.kwargs.get("event_pk")

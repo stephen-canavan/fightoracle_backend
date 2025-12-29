@@ -1,7 +1,6 @@
 from django.urls import path, include
 from . import views
 from rest_framework_nested import routers
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 router = routers.SimpleRouter()
 # Users
@@ -33,9 +32,13 @@ router.register(r"fighters", views.FighterViewSet, basename="fighter")
 fighters = routers.NestedSimpleRouter(router, r"fighters", lookup="fighter")
 fighters.register(r"fights", views.FightViewSet, basename="fighter-fights")
 
+# Tokens
+# router.register(r"token", views.TokenObtainPairView, basename="token_obtain_parir")
+# router.register(r"token/refresh", views.TokenRefreshView, basename="token_refresh")
+
 urlpatterns = [
-    path(r"token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path(r"token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path(r"token/", views.TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path(r"token/refresh/", views.TokenRefreshView.as_view(), name="token_refresh"),
     path(r"", include(router.urls)),
     path(r"", include(promotions.urls)),
     path(r"", include(events.urls)),

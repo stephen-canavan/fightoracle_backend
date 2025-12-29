@@ -4,24 +4,34 @@ from django.shortcuts import get_object_or_404
 from api.models import User
 from api.serializers import UserSerializer
 from rest_framework import viewsets
-from rest_framework.permissions import AllowAny
+from api.permissions import IsOwner
+from rest_framework.permissions import AllowAny, IsAdminUser
 
 
 class UserViewSet(viewsets.ViewSet):
-    permission_classes = [AllowAny]
+    def get_permissions(self):
+        if self.action in ["list", "retrieve"]:
+            return [IsOwner()]
+        if self.action in ["destroy", "update", "partial_update"]:
+            return [IsOwner() | IsAdminUser()]
+
+        return [IsAdminUser()]
 
     def list(self, request):
+        self.check_permissions(request)
         users = User.objects.all()
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
         user = get_object_or_404(User, username=pk)
+        self.check_object_permissions(request, user)
         serializer = UserSerializer(user)
         return Response(serializer.data)
 
-    def destroy(self, request, username=None):
-        user = get_object_or_404(User, username=username)
+    def destroy(self, request, pk=None):
+        user = get_object_or_404(User, username=pk)
+        self.check_object_permissions(request, user)
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 

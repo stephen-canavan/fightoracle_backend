@@ -4,6 +4,7 @@ from .promotions import PromotionViewSet
 from .fighters import FighterViewSet
 from .fights import FightViewSet
 from .predictions import PredictionViewSet
+from .token import TokenObtainPairView, TokenRefreshView
 
 __all__ = [
     UserViewSet,
@@ -12,4 +13,6 @@ __all__ = [
     FighterViewSet,
     FightViewSet,
     PredictionViewSet,
+    TokenObtainPairView,
+    TokenRefreshView,
 ]

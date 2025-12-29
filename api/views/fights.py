@@ -5,14 +5,14 @@ from rest_framework.response import Response
 from api.models import Fight
 from api.serializers import FightSerializer
 from django.db.models import Q
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAdminUser
 
 
 class FightViewSet(viewsets.ViewSet):
-    permission_classes = [AllowAny]
-
-    def get_serializer_class(self):
-        return FightSerializer
+    def get_permissions(self):
+        if self.action in ["list", "retrieve"]:
+            return [AllowAny()]
+        return [IsAdminUser()]
 
     def get_queryset(self):
         fighter_id = self.kwargs.get("fighter_pk")

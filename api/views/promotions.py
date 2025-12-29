@@ -4,11 +4,14 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from api.models import Promotion
 from api.serializers import PromotionSerializer
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import IsAdminUser, AllowAny
 
 
 class PromotionViewSet(viewsets.ViewSet):
-    permission_classes = [AllowAny]
+    def get_permissions(self):
+        if self.action in ["list", "retrieve"]:
+            return [AllowAny()]
+        return [IsAdminUser()]
 
     def get_queryset(self):
         return Promotion.objects.all()
