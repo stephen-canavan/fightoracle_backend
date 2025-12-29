@@ -54,6 +54,9 @@ Thumbs.db
 logs/
 *.log
 
+# Dev
+to-do.md
+
 # JSON data (if not needed in production)
 # json/
 
