@@ -216,5 +216,8 @@ if not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     CSRF_TRUSTED_ORIGINS = [
+        "https://fightoracle.ie",
+        "https://www.fightoracle.ie",
         "https://api.fightoracle.ie",
+        "https://www.api.fightoracle.ie",
     ]
