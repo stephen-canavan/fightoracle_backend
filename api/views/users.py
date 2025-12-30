@@ -11,22 +11,22 @@ from rest_framework.permissions import AllowAny, IsAdminUser
 class UserViewSet(viewsets.ViewSet):
     def get_permissions(self):
         if self.action in ["list", "retrieve"]:
-            return [IsOwner()]
+            return [AllowAny()]
         if self.action in ["destroy", "update", "partial_update"]:
-            return [IsOwner() | IsAdminUser()]
+            return [IsOwner(), IsAdminUser()]
 
         return [IsAdminUser()]
 
     def list(self, request):
         self.check_permissions(request)
         users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
+        serializer = UserSerializer(users, context={"request": request}, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
         user = get_object_or_404(User, username=pk)
         self.check_object_permissions(request, user)
-        serializer = UserSerializer(user)
+        serializer = UserSerializer(user, context={"request": request})
         return Response(serializer.data)
 
     def destroy(self, request, pk=None):

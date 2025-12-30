@@ -19,11 +19,12 @@ class PredictionViewSet(viewsets.ViewSet):
             return [IsAuthenticated(), PredictionIsMakeable()]
         if self.action in ["update", "partial_update"]:
             return [IsAuthenticated(), IsOwner(), PredictionIsMakeable()]
+        if self.action == "destroy":
+            return [IsAuthenticated(), IsOwner()]
         return [IsAdminUser()]
 
     def get_queryset(self, **kwargs):
         query_set = Prediction.objects.all()
-
         username = self.kwargs.get("user_pk")
 
         if username:
@@ -57,7 +58,4 @@ class PredictionViewSet(viewsets.ViewSet):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def update(self, request, pk=None):
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
-
-    def create(self, pk=None):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)

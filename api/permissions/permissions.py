@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 
 
@@ -23,6 +23,6 @@ class PredictionIsMakeable(BasePermission):
     message = "You cannot make a prediction once the event start date has passed"
 
     def has_object_permission(self, request, view, obj):
-        current_time = datetime.now()
+        current_time = datetime.now(timezone.utc)
 
         return current_time < obj.fight.event.date

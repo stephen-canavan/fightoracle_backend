@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from api.models import Fighter
+from api.serializers.promotions import PromotionSummarySerializer
 
 
 class FighterRecordSerializer(serializers.ModelSerializer):
@@ -10,6 +11,7 @@ class FighterRecordSerializer(serializers.ModelSerializer):
 
 class FighterSerializer(serializers.ModelSerializer):
     record = FighterRecordSerializer(source="*")
+    promotion = PromotionSummarySerializer()
 
     class Meta:
         model = Fighter

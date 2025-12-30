@@ -8,7 +8,10 @@ from rest_framework.permissions import IsAdminUser, AllowAny
 
 
 class FighterViewSet(viewsets.ViewSet):
-    permission_classes = [IsAdminUser]
+    def get_permissions(self):
+        if self.action in ["list", "retrieve"]:
+            return [AllowAny()]
+        return [IsAdminUser()]
 
     def get_queryset(self):
         event_id = self.kwargs.get("event_pk")
