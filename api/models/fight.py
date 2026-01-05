@@ -15,9 +15,13 @@ class Fight(models.Model):
     title_fight = models.BooleanField()
 
     # Result
-    winner = models.ForeignKey("api.Fighter", null=True, on_delete=models.PROTECT)
-    method = models.CharField(max_length=255, choices=Method.choices)
-    round = models.IntegerField()
+    winner = models.ForeignKey(
+        "api.Fighter", blank=True, null=True, on_delete=models.PROTECT
+    )
+    method = models.CharField(
+        max_length=255, choices=Method.choices, blank=True, null=True
+    )
+    round = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.fighter_red.name} vs {self.fighter_blue.name}"

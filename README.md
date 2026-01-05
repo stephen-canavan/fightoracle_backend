@@ -13,13 +13,19 @@ Django backend for www.fightoracle.ie
    pip install -r requirements.txt
    ```
 
-2. Apply migrations
+2. Export environment variables
+
+   ```bash
+   export $(grep -v '^#' /etc/yourproject.env | xargs)
+   ```
+
+3. Apply migrations
 
    ```bash
    python manage.py migrate
    ```
 
-3. Run server
+4. Run server
    ```bash
    python manage.py runserver
    ```

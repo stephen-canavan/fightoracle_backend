@@ -3,24 +3,24 @@
     "model": "api.Event",
     "pk": 1,
     "fields": {
-      "name": "UFC 300: Pereira vs. Hill",
+      "name": "UFC 300 | Pereira vs. Hill",
       "promotion": 1,
       "country": "United States",
       "city": "Las Vegas, Nevada",
       "venue": "T-Mobile Arena",
-      "date": "2024-04-13"
+      "date": "2024-04-13T22:00:00Z"
     }
   },
   {
     "model": "api.Event",
     "pk": 2,
-      "fields": {
-      "name": "UFC 320: Ankalaev vs. Pereira 2",
+    "fields": {
+      "name": "UFC 324 | Gaethje vs. Pimblett",
       "promotion": 1,
       "country": "United States",
-      "city": "Paradise, Nevada",
+      "city": "Las Vegas",
       "venue": "T-Mobile Arena",
-      "date": "2025-10-04"
+      "date": "2026-01-24T22:00:00Z"
     }
   }
 ]

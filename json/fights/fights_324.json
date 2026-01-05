@@ -1,0 +1,62 @@
+[
+  {
+    "model": "api.Fight",
+    "pk": 14,
+    "fields": {
+      "event": 12,
+      "fighter_red": 27,
+      "fighter_blue": 28,
+      "weight_class": "LW",
+      "scheduled_rounds": 5,
+      "title_fight": true
+    }
+  },
+  {
+    "model": "api.Fight",
+    "pk": 15,
+    "fields": {
+      "event": 2,
+      "fighter_red": 29,
+      "fighter_blue": 30,
+      "weight_class": "BW",
+      "scheduled_rounds": 5,
+      "title_fight": true
+    }
+  },
+  {
+    "model": "api.Fight",
+    "pk": 16,
+    "fields": {
+      "event": 2,
+      "fighter_red": 31,
+      "fighter_blue": 32,
+      "weight_class": "BW",
+      "scheduled_rounds": 3,
+      "title_fight": false
+    }
+  },
+  {
+    "model": "api.Fight",
+    "pk": 17,
+    "fields": {
+      "event": 2,
+      "fighter_red": 33,
+      "fighter_blue": 34,
+      "weight_class": "HW",
+      "scheduled_rounds": 3,
+      "title_fight": false
+    }
+  },
+  {
+    "model": "api.Fight",
+    "pk": 18,
+    "fields": {
+      "event": 2,
+      "fighter_red": 35,
+      "fighter_blue": 36,
+      "weight_class": "FW",
+      "scheduled_rounds": 3,
+      "title_fight": false
+    }
+  }
+]

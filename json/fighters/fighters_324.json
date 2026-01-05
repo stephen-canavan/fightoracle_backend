@@ -1,0 +1,172 @@
+[
+  {
+    "model": "api.fighter",
+    "pk": 27,
+    "fields": {
+      "fname": "Justin",
+      "sname": "Gaethje",
+      "nickname": "The Highlight",
+      "promotion": 1,
+      "weight_class": "LW",
+      "dob": "1988-11-14",
+      "wins": 26,
+      "losses": 5,
+      "draws": 0,
+      "no_contests": 0,
+      "dqs": 0
+    }
+  },
+  {
+    "model": "api.fighter",
+    "pk": 28,
+    "fields": {
+      "fname": "Paddy",
+      "sname": "Pimblett",
+      "nickname": "The Baddy",
+      "promotion": 1,
+      "weight_class": "LW",
+      "dob": "1995-01-03",
+      "wins": 23,
+      "losses": 3,
+      "draws": 0,
+      "no_contests": 0,
+      "dqs": 0
+    }
+  },
+  {
+    "model": "api.fighter",
+    "pk": 29,
+    "fields": {
+      "fname": "Kayla",
+      "sname": "Harrison",
+      "nickname": "-",
+      "promotion": 1,
+      "weight_class": "BW",
+      "dob": "1990-07-02",
+      "wins": 19,
+      "losses": 1,
+      "draws": 0,
+      "no_contests": 0,
+      "dqs": 0
+    }
+  },
+  {
+    "model": "api.fighter",
+    "pk": 30,
+    "fields": {
+      "fname": "Amanda",
+      "sname": "Nunes",
+      "nickname": "Lioness",
+      "promotion": 1,
+      "weight_class": "BW",
+      "dob": "1988-05-30",
+      "wins": 23,
+      "losses": 5,
+      "draws": 0,
+      "no_contests": 0,
+      "dqs": 0
+    }
+  },
+  {
+    "model": "api.fighter",
+    "pk": 31,
+    "fields": {
+      "fname": "Sean",
+      "sname": "O'Malley",
+      "nickname": "Suga",
+      "promotion": 1,
+      "weight_class": "BW",
+      "dob": "1994-10-24",
+      "wins": 18,
+      "losses": 3,
+      "draws": 0,
+      "no_contests": 1,
+      "dqs": 0
+    }
+  },
+  {
+    "model": "api.fighter",
+    "pk": 32,
+    "fields": {
+      "fname": "Song",
+      "sname": "Yadong",
+      "nickname": "Kung Fu Kid",
+      "promotion": 1,
+      "weight_class": "BW",
+      "dob": "1997-12-02",
+      "wins": 22,
+      "losses": 8,
+      "draws": 0,
+      "no_contests": 1,
+      "dqs": 0
+    }
+  },
+  {
+    "model": "api.fighter",
+    "pk": 33,
+    "fields": {
+      "fname": "Waldo",
+      "sname": "Cortes Acosta",
+      "nickname": "Salsa Boy",
+      "promotion": 1,
+      "weight_class": "HW",
+      "dob": "1991-10-03",
+      "wins": 16,
+      "losses": 2,
+      "draws": 0,
+      "no_contests": 0,
+      "dqs": 0
+    }
+  },
+  {
+    "model": "api.fighter",
+    "pk": 34,
+    "fields": {
+      "fname": "Derrick",
+      "sname": "Lewis",
+      "nickname": "The Black Beast",
+      "promotion": 1,
+      "weight_class": "HW",
+      "dob": "1985-02-07",
+      "wins": 29,
+      "losses": 12,
+      "draws": 0,
+      "no_contests": 1,
+      "dqs": 0
+    }
+  },
+  {
+    "model": "api.fighter",
+    "pk": 35,
+    "fields": {
+      "fname": "Arnold",
+      "sname": "Allen",
+      "nickname": "Almighty",
+      "promotion": 1,
+      "weight_class": "FW",
+      "dob": "1994-01-22",
+      "wins": 20,
+      "losses": 3,
+      "draws": 0,
+      "no_contests": 0,
+      "dqs": 0
+    }
+  },
+  {
+    "model": "api.fighter",
+    "pk": 36,
+    "fields": {
+      "fname": "Jean",
+      "sname": "Silva",
+      "nickname": "Lord",
+      "promotion": 1,
+      "weight_class": "FW",
+      "dob": "1996-12-13",
+      "wins": 16,
+      "losses": 3,
+      "draws": 0,
+      "no_contests": 0,
+      "dqs": 0
+    }
+  }
+]
