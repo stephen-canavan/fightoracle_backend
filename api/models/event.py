@@ -1,4 +1,5 @@
 from django.db import models
+from api.options import EventStatus
 
 
 class Event(models.Model):
@@ -7,6 +8,9 @@ class Event(models.Model):
     country = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     venue = models.CharField(max_length=255)
+    status = models.CharField(
+        max_length=255, choices=EventStatus.choices, default=EventStatus.SCHEDULED
+    )
     date = models.DateTimeField()
 
     def __str__(self):

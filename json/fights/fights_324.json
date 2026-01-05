@@ -3,7 +3,7 @@
     "model": "api.Fight",
     "pk": 14,
     "fields": {
-      "event": 12,
+      "event": 2,
       "fighter_red": 27,
       "fighter_blue": 28,
       "weight_class": "LW",

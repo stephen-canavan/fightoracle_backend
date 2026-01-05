@@ -23,6 +23,18 @@ class WeightClass(models.TextChoices):
     CATCHWEIGHT = "CW", "Catchweight"
 
 
+class FightStatus(models.TextChoices):
+    SCHEDULED = "SCHEDULED", "Scheduled"
+    COMPLETED = "COMPLETED", "Completed"
+    CANCELLED = "CANCELLED", "Cancelled"
+
+
+class EventStatus(models.TextChoices):
+    SCHEDULED = "SCHEDULED", "Scheduled"
+    COMPLETED = "COMPLETED", "Completed"
+    CANCELLED = "CANCELLED", "Cancelled"
+
+
 class Method(models.TextChoices):
     DEC = "DEC", "Decision"
     SPLIT = "DEC-SPLIT", "Split Decision"

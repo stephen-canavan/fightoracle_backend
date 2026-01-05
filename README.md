@@ -16,7 +16,7 @@ Django backend for www.fightoracle.ie
 2. Export environment variables
 
    ```bash
-   export $(grep -v '^#' /etc/yourproject.env | xargs)
+   export $(grep -v '^#' /etc/fightoracle_api/env | xargs)
    ```
 
 3. Apply migrations
