@@ -6,9 +6,25 @@
       "event": 2,
       "fighter_red": 27,
       "fighter_blue": 28,
+      "fighter_red_record": {
+        "wins": 22,
+        "losses": 3,
+        "draws": 0,
+        "no_contests": 0,
+        "dqs": 0
+      },
+      "fighter_blue_record": {
+        "wins": 16,
+        "losses": 2,
+        "draws": 0,
+        "no_contests": 0,
+        "dqs": 0
+      },
       "weight_class": "LW",
       "scheduled_rounds": 5,
-      "title_fight": true
+      "is_title_fight": true,
+      "is_main_event": true,
+      "status": "SCHEDULED"
     }
   },
   {
@@ -18,9 +34,25 @@
       "event": 2,
       "fighter_red": 29,
       "fighter_blue": 30,
+      "fighter_red_record": {
+        "wins": 22,
+        "losses": 3,
+        "draws": 0,
+        "no_contests": 0,
+        "dqs": 0
+      },
+      "fighter_blue_record": {
+        "wins": 16,
+        "losses": 2,
+        "draws": 0,
+        "no_contests": 0,
+        "dqs": 0
+      },
       "weight_class": "BW",
       "scheduled_rounds": 5,
-      "title_fight": true
+      "is_title_fight": true,
+      "is_main_event": false,
+      "status": "SCHEDULED"
     }
   },
   {
@@ -30,9 +62,25 @@
       "event": 2,
       "fighter_red": 31,
       "fighter_blue": 32,
+      "fighter_red_record": {
+        "wins": 22,
+        "losses": 3,
+        "draws": 0,
+        "no_contests": 0,
+        "dqs": 0
+      },
+      "fighter_blue_record": {
+        "wins": 16,
+        "losses": 2,
+        "draws": 0,
+        "no_contests": 0,
+        "dqs": 0
+      },
       "weight_class": "BW",
       "scheduled_rounds": 3,
-      "title_fight": false
+      "is_title_fight": false,
+      "is_main_event": false,
+      "status": "SCHEDULED"
     }
   },
   {
@@ -42,9 +90,25 @@
       "event": 2,
       "fighter_red": 33,
       "fighter_blue": 34,
+      "fighter_red_record": {
+        "wins": 22,
+        "losses": 3,
+        "draws": 0,
+        "no_contests": 0,
+        "dqs": 0
+      },
+      "fighter_blue_record": {
+        "wins": 16,
+        "losses": 2,
+        "draws": 0,
+        "no_contests": 0,
+        "dqs": 0
+      },
       "weight_class": "HW",
       "scheduled_rounds": 3,
-      "title_fight": false
+      "is_title_fight": false,
+      "is_main_event": false,
+      "status": "SCHEDULED"
     }
   },
   {
@@ -54,9 +118,25 @@
       "event": 2,
       "fighter_red": 35,
       "fighter_blue": 36,
+      "fighter_red_record": {
+        "wins": 22,
+        "losses": 3,
+        "draws": 0,
+        "no_contests": 0,
+        "dqs": 0
+      },
+      "fighter_blue_record": {
+        "wins": 16,
+        "losses": 2,
+        "draws": 0,
+        "no_contests": 0,
+        "dqs": 0
+      },
       "weight_class": "FW",
       "scheduled_rounds": 3,
-      "title_fight": false
+      "is_title_fight": false,
+      "is_main_event": false,
+      "status": "SCHEDULED"
     }
   }
 ]

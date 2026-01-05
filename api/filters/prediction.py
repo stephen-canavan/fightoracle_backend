@@ -76,18 +76,18 @@ class PredictionFilter(django_filters.FilterSet):
             return queryset.exclude(winner=F("fight__winner"))
 
     def filter_round_correct(self, queryset, name, value):
-        queryset = queryset.exclude(fight__round__isnull=True)
+        queryset = queryset.exclude(fight__winning_round__isnull=True)
         if value:
-            return queryset.filter(round=F("fight__round"))
+            return queryset.filter(round=F("fight__winning_round"))
         else:
-            return queryset.exclude(round=F("fight__round"))
+            return queryset.exclude(round=F("fight__winning_round"))
 
     def filter_method_correct(self, queryset, name, value):
-        queryset = queryset.exclude(fight__method__isnull=True)
+        queryset = queryset.exclude(fight__winning_method__isnull=True)
         if value:
-            return queryset.filter(method=F("fight__method"))
+            return queryset.filter(method=F("fight__winning_method"))
         else:
-            return queryset.exclude(method=F("fight__method"))
+            return queryset.exclude(method=F("fight__winning_method"))
 
     def filter_perfect(self, queryset, name, value):
         queryset = self.filter_winner_correct(queryset, name, value)

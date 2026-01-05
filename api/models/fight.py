@@ -10,8 +10,8 @@ class Fight(models.Model):
     fighter_blue = models.ForeignKey(
         "api.Fighter", related_name="blue_corner", on_delete=models.PROTECT
     )
-    fighter_red_record = models.CharField(max_length=50, blank=True, null=True)
-    fighter_blue_record = models.CharField(max_length=50, blank=True, null=True)
+    fighter_red_record = models.JSONField(max_length=50, blank=True, null=True)
+    fighter_blue_record = models.JSONField(max_length=50, blank=True, null=True)
     weight_class = models.CharField(max_length=255, choices=WeightClass.choices)
     scheduled_rounds = models.PositiveSmallIntegerField(default=3)
     is_title_fight = models.BooleanField(default=False)
@@ -31,3 +31,14 @@ class Fight(models.Model):
 
     def __str__(self):
         return f"{self.fighter_red.name} vs {self.fighter_blue.name}"
+
+    @property
+    def get_fighter_red_with_record(self):
+        # Provide the nested data dynamically
+        self.fighter_red.fighter_record = self.fighter_red_record
+        return self.fighter_red
+
+    @property
+    def get_fighter_blue_with_record(self):
+        self.fighter_blue.fighter_record = self.fighter_blue_record
+        return self.fighter_blue

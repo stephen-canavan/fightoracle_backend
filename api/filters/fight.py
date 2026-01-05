@@ -14,8 +14,8 @@ class FightFilter(django_filters.FilterSet):
             "fighter_red": ["exact"],
             "fighter_blue": ["exact"],
             "winner": ["exact"],
-            "method": ["exact"],
-            "round": ["exact"],
+            "winning_method": ["exact"],
+            "winning_round": ["exact"],
             "date": ["exact"],
         }
 
