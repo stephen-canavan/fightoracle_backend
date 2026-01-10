@@ -12,6 +12,7 @@ class FighterRecordSerializer(serializers.ModelSerializer):
 class FighterSerializer(serializers.ModelSerializer):
     record = FighterRecordSerializer(source="*")
     promotion = PromotionSummarySerializer()
+    avatar_url = serializers.ImageField(source="avatar")
 
     class Meta:
         model = Fighter
@@ -24,10 +25,13 @@ class FighterSerializer(serializers.ModelSerializer):
             "promotion",
             "dob",
             "record",
+            "avatar_url",
         ]
 
 
 class FighterSummarySerializer(serializers.ModelSerializer):
+    avatar_url = serializers.ImageField(source="avatar")
+
     class Meta:
         model = Fighter
-        fields = ["id", "name"]
+        fields = ["id", "name", "avatar_url"]

@@ -1,5 +1,12 @@
 from django.db import models
 from api.options import WeightClass
+from fightoracle_api import settings
+from PIL import Image
+import os
+
+
+def fighter_image_upload_path(instance, filename):
+    return f"fighters/{instance.id}/{filename}"
 
 
 class Fighter(models.Model):
@@ -14,10 +21,25 @@ class Fighter(models.Model):
     draws = models.PositiveSmallIntegerField(default=0)
     no_contests = models.PositiveSmallIntegerField(default=0)
     dqs = models.PositiveSmallIntegerField(default=0)
+    avatar = models.ImageField(
+        upload_to=fighter_image_upload_path, null=True, blank=True
+    )
 
     @property
     def name(self):
         return f"{self.fname} {self.sname}"
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if self.avatar:
+            image_path = os.path.join(settings.MEDIA_ROOT, self.avatar.name)
+            img = Image.open(image_path)
+
+            # Resize image to max 512x512 for fighters
+            max_size = (512, 512)
+            img.thumbnail(max_size)
+            img.save(image_path)
 
     def __str__(self):
         return f"id: {self.id}, name: {self.fname} {self.sname}"
