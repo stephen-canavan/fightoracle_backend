@@ -17,10 +17,11 @@ class FightResultSerializer(serializers.ModelSerializer):
 class FightFighterSummarySerializer(serializers.ModelSerializer):
     # 'record' will be pulled from the Fight instance via 'source'
     record = serializers.JSONField(source="fighter_record")
+    avatar_url = serializers.ImageField(source="avatar")
 
     class Meta:
         model = Fighter
-        fields = ["id", "name", "record"]
+        fields = ["id", "name", "record", "avatar_url"]
 
 
 class FightSerializer(serializers.ModelSerializer):

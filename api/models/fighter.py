@@ -2,11 +2,15 @@ from django.db import models
 from api.options import WeightClass
 from fightoracle_api import settings
 from PIL import Image
+from api.models.utils import sanitize_filename
 import os
 
 
 def fighter_image_upload_path(instance, filename):
-    return f"fighters/{instance.id}/{filename}"
+    extension = filename.split(".")[-1]
+    new_filename = f"{instance.fname}_{instance.sname}.{extension}"
+    safe_filename = sanitize_filename(new_filename)
+    return f"fighters/{instance.id}/{safe_filename}"
 
 
 class Fighter(models.Model):
