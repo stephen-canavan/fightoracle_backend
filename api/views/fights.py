@@ -2,10 +2,13 @@ from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
-from api.models import Fight
+from api.models import Fight, Fighter
 from api.serializers import FightSerializer
 from django.db.models import Q
 from rest_framework.permissions import AllowAny, IsAdminUser
+from rest_framework.decorators import action
+
+from api.services.fights import complete_fight
 
 
 class FightViewSet(viewsets.ViewSet):
@@ -51,3 +54,15 @@ class FightViewSet(viewsets.ViewSet):
 
     def create(self, pk=None):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    @action(detail=True, methods=["post"])
+    def complete(self, request, pk=None):
+        fight = get_object_or_404(Fight, id=pk)
+
+        winner = get_object_or_404(Fighter, pk=request.data["winner_id"])
+        method = request.data["method"]
+        round = request.data["round"]
+
+        complete_fight(fight, winner=winner, method=method, round=round)
+
+        return Response({"status": "completed"})

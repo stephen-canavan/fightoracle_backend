@@ -40,9 +40,10 @@ class PredictionFilter(django_filters.FilterSet):
         fields = {
             "user": ["exact"],
             "fight": ["exact"],
-            "winner": ["exact"],
-            "round": ["exact"],
-            "date": ["exact"],
+            "event": ["exact"],
+            "predicted_winner": ["exact"],
+            "predicted_round": ["exact"],
+            "prediction_date": ["exact"],
         }
 
     def filter_weight_class(self, queryset, name, value):

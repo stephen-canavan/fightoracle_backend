@@ -36,6 +36,7 @@ class EventStatus(models.TextChoices):
 
 
 class Method(models.TextChoices):
+    FINISH = "FINISH", "Finish"
     DEC = "DEC", "Decision"
     SPLIT = "DEC-SPLIT", "Split Decision"
     SUB = "SUB", "Submission"
@@ -54,4 +55,3 @@ class PredictionStatus(models.TextChoices):
     PENDING = "PENDING"
     CORRECT = "CORRECT"
     INCORRECT = "INCORRECT"
-    PARTIALLY_CORRECT = "PARTIALLY_CORRECT"

@@ -54,8 +54,24 @@ class PredictionViewSet(viewsets.ViewSet):
         prediction.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    def partial_update(self, request, pk=None):
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
-
     def update(self, request, pk=None):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    def partial_update(self, request, pk=None):
+        """
+        Partial update (PATCH) – only updates provided fields.
+        """
+        prediction = get_object_or_404(Prediction, pk=pk)
+
+        serializer = PredictionSerializer(
+            prediction,
+            data=request.data,
+            partial=True,  # KEY DIFFERENCE
+            context={"request": request},
+        )
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

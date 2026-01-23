@@ -7,11 +7,11 @@ from api.serializers.fighters import FighterSummarySerializer
 
 
 class PredictionResultSerializer(serializers.ModelSerializer):
-    winner = FighterSummarySerializer()
+    predicted_winner = FighterSummarySerializer()
 
     class Meta:
         model = Prediction
-        fields = ["winner", "method", "round"]
+        fields = ["predicted_winner", "predicted_method", "predicted_round"]
 
 
 class PredictionSerializer(serializers.ModelSerializer):
@@ -23,12 +23,5 @@ class PredictionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Prediction
-        fields = [
-            "id",
-            "user",
-            "event",
-            "fight",
-            "predicted_result",
-            "result",
-            "date",
-        ]
+        fields = "__all__"
+        read_only_fields = ["points_potential", "points_earned"]
