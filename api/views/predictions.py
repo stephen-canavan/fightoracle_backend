@@ -54,6 +54,19 @@ class PredictionViewSet(viewsets.ViewSet):
         prediction.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+    def create(self, request, *args, **kwargs):
+        print(request.data)
+        print(request.user)
+
+        serializer = PredictionSerializer(data=request.data)
+        if not serializer.is_valid():
+            print("Prediction Serializer errors:", serializer.errors)
+        serializer.is_valid(raise_exception=True)
+
+        serializer.save(user=request.user)  # attach logged-in user
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
     def update(self, request, pk=None):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 

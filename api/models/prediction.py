@@ -1,13 +1,14 @@
 from django.db import models
 from api.options import Method
 from api.services.predictions import calculate_potential_points
+from django.utils import timezone
 
 
 class Prediction(models.Model):
     user = models.ForeignKey("api.User", on_delete=models.CASCADE)
     event = models.ForeignKey("api.Event", on_delete=models.PROTECT)
     fight = models.ForeignKey("api.Fight", on_delete=models.CASCADE)
-    prediction_date = models.DateField()
+    prediction_date = models.DateTimeField(default=timezone.now)
 
     # Prediction details
     predicted_winner = models.ForeignKey("api.Fighter", on_delete=models.PROTECT)

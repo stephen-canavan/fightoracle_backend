@@ -36,14 +36,14 @@ class EventStatus(models.TextChoices):
 
 
 class Method(models.TextChoices):
-    FINISH = "FINISH", "Finish"
-    DEC = "DEC", "Decision"
-    SPLIT = "DEC-SPLIT", "Split Decision"
-    SUB = "SUB", "Submission"
-    TKO = "TKO", "Technical Knockout"
-    KO = "KO", "Knockout"
-    DQ = "DQ", "Disqualification"
-    NOC = "NC", "No Contest"
+    FINISH = "FINISH"
+    KOTKO = "KO/TKO"
+    DEC = "DEC"
+    SPLIT = "DEC-SPLIT"
+    SUB = "SUB"
+    KO = "KO"
+    DQ = "DQ"
+    NOC = "NC"
 
 
 class Bookmaker(models.TextChoices):
