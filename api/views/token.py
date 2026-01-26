@@ -12,6 +12,7 @@ class TokenObtainPairView(TokenObtainPairView):
 
         if refresh_token:
             import os
+
             secure_cookie = os.getenv("SECURE_COOKIE", "False").lower() == "true"
             response.set_cookie(
                 key="refresh_token",
@@ -35,7 +36,7 @@ class TokenRefreshView(TokenRefreshView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        request.data["refresh_token"] = refresh_token
+        request.data["refresh"] = refresh_token
         response = super().post(request, *args, **kwargs)
 
         return response
