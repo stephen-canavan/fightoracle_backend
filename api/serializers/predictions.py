@@ -36,4 +36,15 @@ class PredictionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Prediction
         fields = "__all__"
-        read_only_fields = ["points_potential", "points_earned"]
+        read_only_fields = ["points_potential", "points_earned", "perfect_prediction"]
+
+    def create(self, validated_data):
+        user = validated_data.pop("user")
+        fight = validated_data["fight"]
+
+        obj, _ = Prediction.objects.update_or_create(
+            user=user,
+            fight=fight,
+            defaults=validated_data,
+        )
+        return obj

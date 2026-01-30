@@ -5,6 +5,8 @@ from rest_framework.response import Response
 from api.models import Event
 from api.serializers import EventSerializer
 from rest_framework.permissions import IsAdminUser, AllowAny
+from rest_framework.decorators import action
+from api.services.events import complete_event
 
 
 class EventViewSet(viewsets.ViewSet):
@@ -45,3 +47,17 @@ class EventViewSet(viewsets.ViewSet):
 
     def create(self, pk=None):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    @action(detail=True, methods=["post"])
+    def complete(self, request, pk=None):
+        event = get_object_or_404(Event, id=pk)
+
+        try:
+            complete_event(event.id)
+        except ValueError as e:
+            return Response(
+                {"error": str(e)},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        return Response({"status": "completed"})

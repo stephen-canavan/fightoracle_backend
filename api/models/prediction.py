@@ -18,12 +18,15 @@ class Prediction(models.Model):
     predicted_round = models.IntegerField(blank=True, null=True)  # restrict to 1 - 5
 
     # Results
-    winner_correct = models.BooleanField(null=True)
-    method_correct = models.BooleanField(null=True)
-    round_correct = models.BooleanField(null=True)
+    winner_correct = models.BooleanField(blank=True, null=True)
+    method_correct = models.BooleanField(blank=True, null=True)
+    round_correct = models.BooleanField(blank=True, null=True)
+    finish_correct = models.BooleanField(blank=True, null=True)
+    decision_correct = models.BooleanField(blank=True, null=True)
+    perfect_prediction = models.BooleanField(blank=True, null=True)
 
-    points_potential = models.IntegerField(default=0)
-    points_earned = models.IntegerField(default=0)
+    points_potential = models.IntegerField(blank=True, default=0)
+    points_earned = models.IntegerField(blank=True, default=0)
 
     class Meta:
         constraints = [

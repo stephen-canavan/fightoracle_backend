@@ -16,7 +16,7 @@ def fighter_image_upload_path(instance, filename):
 class Fighter(models.Model):
     fname = models.CharField(max_length=255)
     sname = models.CharField(max_length=255)
-    nickname = models.CharField(max_length=255, null=True)
+    nickname = models.CharField(max_length=255, blank=True, null=True)
     promotion = models.ForeignKey("api.Promotion", on_delete=models.PROTECT)
     weight_class = models.CharField(max_length=255, choices=WeightClass.choices)
     dob = models.DateField()

@@ -28,6 +28,7 @@ class TokenObtainPairView(TokenObtainPairView):
 
 class TokenRefreshView(TokenRefreshView):
     def post(self, request, *args, **kwargs):
+        print("TokenRefreshView POST called", request.COOKIES)
         refresh_token = request.COOKIES.get("refresh_token", None)
 
         if refresh_token is None:

@@ -1,6 +1,5 @@
 from django.db import transaction
-from api.models import Fight, Prediction
-from api.services.predictions import score_prediction
+from api.models import Fight
 from api.options import FightStatus
 
 
@@ -22,12 +21,3 @@ def complete_fight(fight, *, winner, method, round):
         # Mark fight completed
         fight.status = FightStatus.STATUS_COMPLETED
         fight.save(update_fields=["status"])
-
-        # Lock predictions to avoid race conditions
-        predictions = Prediction.objects.select_for_update().filter(
-            fight=fight,
-            points_awarded__isnull=True,
-        )
-
-        for prediction in predictions:
-            score_prediction(prediction)

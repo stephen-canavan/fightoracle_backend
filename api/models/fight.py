@@ -42,3 +42,13 @@ class Fight(models.Model):
     def get_fighter_blue_with_record(self):
         self.fighter_blue.fighter_record = self.fighter_blue_record
         return self.fighter_blue
+
+    def save(self, *args, **kwargs):
+        if not self.pk:  # Only on creation
+            if self.fighter_red and self.fighter_red_record is None:
+                self.fighter_red_record = self.fighter_red.record
+
+            if self.fighter_blue and self.fighter_blue_record is None:
+                self.fighter_blue_record = self.fighter_blue.record
+
+        super().save(*args, **kwargs)
