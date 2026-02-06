@@ -1,74 +1,108 @@
 from api.services.users import update_user_stats
 from api.options import Method
 
-WINNER_POINTS = 8
-FINISH_POINTS = 3
-METHOD_POINTS = 4
-ROUND_POINTS = 3
-PERFECT_BONUS_POINTS = 1
+PERFECT = 25
+WINNER_ROUND = 22
+WINNER_METHOD_EXCL_DEC = 17
+WINNER_FINISH = 14
+WINNER_DECISION = 20
+WINNER_ONLY = 10
+
+
+def is_decision(method):
+    return method is not None and method in {Method.DEC, Method.SPLIT}
+
+
+def is_finishing_method(method):
+    return method is not None and method in {Method.KO, Method.KOTKO, Method.SUB}
+
+
+def is_finish_predicted(prediction):
+    return (
+        prediction.predicted_method is not None
+        and prediction.predicted_method == Method.FINISH
+    )
 
 
 def calculate_total_points(prediction):
-    total = 0
-    if prediction.winner_correct:
-        total += WINNER_POINTS
-    if prediction.finish_correct:
-        total += FINISH_POINTS
-        return total
-    if prediction.method_correct:
-        total += METHOD_POINTS
-    if prediction.round_correct:
-        total += ROUND_POINTS
+    if not prediction.winner_correct:
+        return 0
+
+    # Decision predictions are considered perfect,
+    # but intentionally score lower than full perfects
+    if prediction.decision_correct:
+        return WINNER_DECISION
+
     if prediction.perfect_prediction:
-        total += PERFECT_BONUS_POINTS
-    return total
+        return PERFECT
+
+    if prediction.round_correct:
+        return WINNER_ROUND
+
+    if prediction.method_correct and not is_decision(prediction.predicted_method):
+        return WINNER_METHOD_EXCL_DEC
+
+    if prediction.finish_correct:
+        return WINNER_FINISH
+
+    return WINNER_ONLY
 
 
 def calculate_potential_points(prediction):
-    total = 0
-
     if not prediction.predicted_winner:
-        return total  # No points if winner not known yet
+        return 0
 
-    total += WINNER_POINTS
+    # Decision predictions are considered perfect,
+    # but intentionally score lower than full perfects
+    if is_decision(prediction.predicted_method):
+        return WINNER_DECISION
 
-    # If only FINISH is predicted, not eligible for other points
+    if prediction.predicted_method and prediction.predicted_round:
+        return PERFECT
+
+    if prediction.predicted_round:
+        return WINNER_ROUND
+
     if prediction.predicted_method == Method.FINISH:
-        total += FINISH_POINTS
-        return total
+        return WINNER_FINISH
 
-    if prediction.predicted_method:
-        total += METHOD_POINTS
-    if prediction.predicted_round and prediction.predicted_method != Method.DEC:
-        total += ROUND_POINTS
-    if prediction.method_correct and prediction.round_correct:
-        total += PERFECT_BONUS_POINTS
-    return total
+    if prediction.predicted_method and not is_decision(prediction.predicted_method):
+        return WINNER_METHOD_EXCL_DEC
+
+    return WINNER_ONLY
 
 
-def score_prediction(prediction):
+def evaluate_prediction(prediction):
     fight = prediction.fight
 
     prediction.winner_correct = prediction.predicted_winner == fight.winner
-    prediction.decision_correct = (
-        prediction.predicted_method == Method.DEC and fight.winning_method == Method.DEC
-    )
-    prediction.method_correct = prediction.predicted_method == fight.winning_method
-    prediction.finish_correct = (
-        prediction.predicted_method == Method.FINISH
-        and fight.winning_method in [Method.KO, Method.KOTKO, Method.SUB]
-    )
-    prediction.round_correct = prediction.predicted_round == fight.winning_round
+    prediction.decision_correct = is_decision(
+        prediction.predicted_method
+    ) and is_decision(fight.winning_method)
 
-    prediction.perfect_prediction = (
-        prediction.winner_correct
-        and (prediction.method_correct and prediction.round_correct)
+    prediction.method_correct = (
+        prediction.predicted_method is not None
+        and prediction.predicted_method == fight.winning_method
+    )
+    prediction.finish_correct = is_finish_predicted(prediction) and is_finishing_method(
+        fight.winning_method
+    )
+    prediction.round_correct = (
+        prediction.predicted_round is not None
+        and prediction.predicted_round == fight.winning_round
+    )
+
+    prediction.perfect_prediction = prediction.winner_correct and (
+        (prediction.method_correct and prediction.round_correct)
         or prediction.decision_correct
     )
 
-    points = calculate_total_points(prediction)
 
-    prediction.points_earned = points
+def score_prediction(prediction):
+    evaluate_prediction(prediction)
+
+    prediction.points_earned = calculate_total_points(prediction)
+    prediction.points_potential = calculate_potential_points(prediction)
 
     prediction.save(
         update_fields=[

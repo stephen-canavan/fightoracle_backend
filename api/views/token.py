@@ -6,6 +6,7 @@ from rest_framework import status
 
 class TokenObtainPairView(TokenObtainPairView):
     def post(self, request, *args, **kwargs):
+        print("TokenObtainPairView   POST called", request.data)
         response = super().post(request, *args, **kwargs)
         data = response.data
         refresh_token = data.get("refresh", None)

@@ -1,12 +1,12 @@
 from django.contrib import admin
-from .models import Promotion, Event, Fight, Fighter, Prediction, User
+from .models import Promotion, Event, Fight, Fighter, Prediction, User, UserStats
 from api.services.events import complete_event
 
 admin.site.register(Promotion)
-
 admin.site.register(Fight)
 admin.site.register(Fighter)
 admin.site.register(User)
+admin.site.register(UserStats)
 admin.site.register(Prediction)
 
 
