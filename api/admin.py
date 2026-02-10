@@ -1,11 +1,13 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from .models import Promotion, Event, Fight, Fighter, Prediction, User, UserStats
 from api.services.events import complete_event
+from api.forms import CustomUserCreationForm, CustomUserChangeForm
 
 admin.site.register(Promotion)
 admin.site.register(Fight)
 admin.site.register(Fighter)
-admin.site.register(User)
+
 admin.site.register(UserStats)
 admin.site.register(Prediction)
 
@@ -20,3 +22,24 @@ def complete_selected_events(modeladmin, request, queryset):
 class EventAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "status")
     actions = [complete_selected_events]
+
+
+@admin.register(User)
+class CustomUserAdmin(UserAdmin):
+    add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
+    model = User
+
+    # Fields shown when *creating* a user
+    add_fieldsets = (
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": ("username", "email", "password1", "password2"),
+            },
+        ),
+    )
+
+    # Optional: fields shown when *editing* a user
+    fieldsets = UserAdmin.fieldsets

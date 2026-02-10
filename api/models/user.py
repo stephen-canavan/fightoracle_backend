@@ -9,7 +9,6 @@ from fightoracle_api import settings
 
 class User(AbstractUser):
     username = models.CharField(max_length=255, unique=True)
-    password = models.CharField(max_length=255, validators=[validate_password])
     email = models.EmailField(max_length=255, unique=True)
     avatar = models.ImageField(upload_to=user_image_upload_path, null=True, blank=True)
 
