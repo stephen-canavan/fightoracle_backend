@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+from api.options import CustomCountries
 import os
 import re
 
@@ -74,6 +75,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_filters",
     "rest_framework_simplejwt",
+    "django_countries",
 ]
 
 MIDDLEWARE = [
@@ -226,3 +228,6 @@ if not DEBUG:
         "https://api.fightoracle.ie",
         "https://www.api.fightoracle.ie",
     ]
+
+
+COUNTRIES = CustomCountries

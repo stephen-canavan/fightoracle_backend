@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from api.models import Fighter
 from api.serializers.promotions import PromotionSummarySerializer
+from fightoracle_api.settings import COUNTRIES
 
 
 class FighterRecordSerializer(serializers.ModelSerializer):
@@ -13,6 +14,7 @@ class FighterSerializer(serializers.ModelSerializer):
     record = FighterRecordSerializer(source="*")
     promotion = PromotionSummarySerializer()
     avatar_url = serializers.ImageField(source="avatar")
+    country = serializers.SerializerMethodField()
 
     class Meta:
         model = Fighter
@@ -26,7 +28,20 @@ class FighterSerializer(serializers.ModelSerializer):
             "dob",
             "record",
             "avatar_url",
+            "country",
         ]
+
+    def get_country(self, obj):
+        if not obj.country:
+            return None
+
+        flag_url = COUNTRIES.get_flag(obj.country.code)
+
+        return {
+            "code": obj.country.code,
+            "name": obj.country.name,
+            "flag": flag_url,  # CDN flag URL
+        }
 
 
 class FighterSummarySerializer(serializers.ModelSerializer):

@@ -2,6 +2,7 @@ from rest_framework import serializers
 from api.models import Fight, Fighter
 from api.serializers.fighters import FighterSummarySerializer
 from api.serializers.events import EventSummarySerializer
+from fightoracle_api.settings import COUNTRIES
 
 
 class FightResultSerializer(serializers.ModelSerializer):
@@ -18,10 +19,22 @@ class FightFighterSummarySerializer(serializers.ModelSerializer):
     # 'record' will be pulled from the Fight instance via 'source'
     record = serializers.JSONField(source="fighter_record")
     avatar_url = serializers.ImageField(source="avatar")
+    country = serializers.SerializerMethodField()
 
     class Meta:
         model = Fighter
-        fields = ["id", "name", "record", "avatar_url"]
+        fields = ["id", "name", "record", "avatar_url", "country"]
+
+    def get_country(self, obj):
+        if obj.country:
+            flag_url = COUNTRIES.get_flag(obj.country.code)
+
+            return {
+                "name": obj.country.name,
+                "flag": flag_url,  # CDN flag URL
+            }
+
+        return None
 
 
 class FightSerializer(serializers.ModelSerializer):

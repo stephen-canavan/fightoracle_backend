@@ -1,8 +1,11 @@
 from django.db import models
+from django_countries.fields import CountryField
 from api.options import WeightClass
+from django.conf import settings as django_conf_settings
 from fightoracle_api import settings
 from PIL import Image
 from api.models.utils import sanitize_filename
+
 import os
 
 
@@ -21,6 +24,9 @@ class Fighter(models.Model):
     weight_class = models.CharField(max_length=255, choices=WeightClass.choices)
     dob = models.DateField()
     wins = models.PositiveSmallIntegerField(default=0)
+    country = CountryField(
+        blank=True, null=True, countries=django_conf_settings.COUNTRIES
+    )
     losses = models.PositiveSmallIntegerField(default=0)
     draws = models.PositiveSmallIntegerField(default=0)
     no_contests = models.PositiveSmallIntegerField(default=0)

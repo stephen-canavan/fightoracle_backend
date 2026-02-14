@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import format_html
 from django.contrib.auth.admin import UserAdmin
 from .models import Promotion, Event, Fight, Fighter, Prediction, User, UserStats
 from api.services.events import complete_event
@@ -6,7 +7,6 @@ from api.forms import CustomUserCreationForm, CustomUserChangeForm
 
 admin.site.register(Promotion)
 admin.site.register(Fight)
-admin.site.register(Fighter)
 
 admin.site.register(UserStats)
 admin.site.register(Prediction)
@@ -43,3 +43,15 @@ class CustomUserAdmin(UserAdmin):
 
     # Optional: fields shown when *editing* a user
     fieldsets = UserAdmin.fieldsets
+
+
+@admin.register(Fighter)
+class FighterAdmin(admin.ModelAdmin):
+    list_display = ("name", "country", "country_flag")
+
+    def country_flag(self, obj):
+        if obj.country:
+            return format_html('<img src="{}" width="20" />', obj.country.flag)
+        return "-"
+
+    country_flag.short_description = "Flag"

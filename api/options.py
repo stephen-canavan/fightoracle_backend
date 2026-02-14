@@ -1,4 +1,5 @@
 from django.db import models
+from django_countries import Countries
 
 
 class Promotions(models.TextChoices):
@@ -55,3 +56,23 @@ class PredictionStatus(models.TextChoices):
     PENDING = "PENDING"
     CORRECT = "CORRECT"
     INCORRECT = "INCORRECT"
+
+
+class CustomCountries(Countries):
+    override = {
+        "ENG": "England",
+        "SCT": "Scotland",
+        "WLS": "Wales",
+    }
+
+    # Map country codes to flag URLs
+    flags = {
+        "ENG": "https://flagcdn.com/gb-eng.svg",
+        "SCT": "https://flagcdn.com/gb-sct.svg",
+        "WLS": "https://flagcdn.com/gb-wls.svg",
+    }
+
+    @classmethod
+    def get_flag(cls, code):
+        # Return flag URL if exists, else None
+        return cls.flags.get(code)
