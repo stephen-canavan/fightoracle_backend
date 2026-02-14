@@ -23,6 +23,8 @@ class Fighter(models.Model):
     promotion = models.ForeignKey("api.Promotion", on_delete=models.PROTECT)
     weight_class = models.CharField(max_length=255, choices=WeightClass.choices)
     dob = models.DateField()
+    height = models.DecimalField(max_digits=5, decimal_places=1, blank=True, null=True)
+    reach = models.DecimalField(max_digits=5, decimal_places=1, blank=True, null=True)
     wins = models.PositiveSmallIntegerField(default=0)
     country = CountryField(
         blank=True, null=True, countries=django_conf_settings.COUNTRIES
@@ -53,3 +55,13 @@ class Fighter(models.Model):
 
     def __str__(self):
         return f"id: {self.id}, name: {self.fname} {self.sname}"
+
+
+def get_record_object(fighter):
+    return {
+        "wins": fighter.wins,
+        "losses": fighter.losses,
+        "draws": fighter.draws,
+        "no_contests": fighter.no_contests,
+        "dqs": fighter.dqs,
+    }

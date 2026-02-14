@@ -5,13 +5,17 @@ from api.models import User
 from api.serializers import UserSerializer
 from rest_framework import viewsets
 from api.permissions import IsOwner
-from rest_framework.permissions import AllowAny, IsAdminUser
+from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
+from rest_framework.decorators import action
+from api.serializers.users import ChangePasswordSerializer
 
 
 class UserViewSet(viewsets.ViewSet):
     def get_permissions(self):
         if self.action in ["list", "retrieve"]:
             return [AllowAny()]
+        if self.action == "change_password":
+            return [IsOwner()]
         if self.action in ["destroy", "update", "partial_update"]:
             return [IsOwner(), IsAdminUser()]
 
@@ -42,8 +46,39 @@ class UserViewSet(viewsets.ViewSet):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def create(self, request):
+        print(f"Create user request: {request.data}")
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=True, methods=["post"])
+    def change_password(self, request, pk=None):
+        user = get_object_or_404(User, username=pk)
+        self.check_object_permissions(request, user)
+
+        print(f"Change password request: {request.data}")
+
+        # Ensure user is changing their own password
+        if request.user != user:
+            return Response(
+                {"detail": "You can only change your own password."},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+
+        serializer = ChangePasswordSerializer(data=request.data)
+
+        if serializer.is_valid():
+            if not user.check_password(serializer.validated_data["current_password"]):
+                return Response(
+                    {"current_password": "Wrong password."},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
+            user.set_password(serializer.validated_data["new_password"])
+            user.save()
+
+            return Response({"detail": "Password updated successfully."})
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

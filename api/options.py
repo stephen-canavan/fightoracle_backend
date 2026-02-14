@@ -74,5 +74,12 @@ class CustomCountries(Countries):
 
     @classmethod
     def get_flag(cls, code):
-        # Return flag URL if exists, else None
-        return cls.flags.get(code)
+        # Return custom flag if defined
+        if code in cls.flags:
+            return cls.flags[code]
+
+        # Fallback to standard ISO flag
+        if code:
+            return f"https://flagcdn.com/{code.lower()}.svg"
+
+        return None

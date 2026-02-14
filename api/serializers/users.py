@@ -53,3 +53,15 @@ class UserSummarySerializer(serializers.ModelSerializer):
 
     def get_avatar_url(self, obj):
         return obj.avatar.url if obj.avatar else None
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    current_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+    def validate_new_password(self, value):
+        if len(value) < 8:
+            raise serializers.ValidationError(
+                "Password must be at least 8 characters long."
+            )
+        return value

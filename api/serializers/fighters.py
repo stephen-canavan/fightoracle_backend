@@ -26,6 +26,8 @@ class FighterSerializer(serializers.ModelSerializer):
             "weight_class",
             "promotion",
             "dob",
+            "height",
+            "reach",
             "record",
             "avatar_url",
             "country",

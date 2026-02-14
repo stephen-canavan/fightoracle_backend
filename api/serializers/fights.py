@@ -23,7 +23,16 @@ class FightFighterSummarySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Fighter
-        fields = ["id", "name", "record", "avatar_url", "country"]
+        fields = [
+            "id",
+            "name",
+            "record",
+            "avatar_url",
+            "country",
+            "dob",
+            "height",
+            "reach",
+        ]
 
     def get_country(self, obj):
         if obj.country:

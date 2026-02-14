@@ -1,5 +1,6 @@
 from django.db import models
 from api.options import FightStatus, WeightClass, Method
+from api.models.fighter import get_record_object
 
 
 class Fight(models.Model):
@@ -46,9 +47,9 @@ class Fight(models.Model):
     def save(self, *args, **kwargs):
         if not self.pk:  # Only on creation
             if self.fighter_red and self.fighter_red_record is None:
-                self.fighter_red_record = self.fighter_red.record
+                self.fighter_red_record = get_record_object(self.fighter_red)
 
             if self.fighter_blue and self.fighter_blue_record is None:
-                self.fighter_blue_record = self.fighter_blue.record
+                self.fighter_blue_record = get_record_object(self.fighter_blue)
 
         super().save(*args, **kwargs)
